@@ -1,11 +1,26 @@
 import { ObjectId } from 'mongodb';
 import { Book } from './book/index.js';
+import {User} from './user/index.js';
 
 export interface DB {
+  users: User[];
   books: Book[];
 }
 
 export const db: DB = {
+  users: [
+    {
+      _id: new ObjectId(),
+      email: 'admin@email.com',
+      password: 'test',
+    },
+    {
+      _id: new ObjectId(),
+      email: 'user@email.com',
+      password: 'test',
+    },
+  ],
+  
   books: [
     {
       _id: new ObjectId(),
