@@ -16,11 +16,11 @@ export const db: DB = {
     },
     {
       _id: new ObjectId(),
-      email: 'user@email.com',
+      email: 'user@email.com', 
       password: 'test',
     },
   ],
-  
+
   books: [
     {
       _id: new ObjectId(),

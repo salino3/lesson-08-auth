@@ -1,5 +1,6 @@
 import '#core/load-env.js';
 import express from 'express';
+import { securityApi } from '#pods/security/security.rest-api.js';
 import path from 'path';
 import url from 'url';
 import {
@@ -18,6 +19,7 @@ restApiServer.use('/', express.static(staticFilesPath));
 
 restApiServer.use(logRequestMiddleware);
 
+restApiServer.use('/api/security', securityApi);
 restApiServer.use('/api/books', booksApi);
 
 restApiServer.use(logErrorRequestMiddleware);
