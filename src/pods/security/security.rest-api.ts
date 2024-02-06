@@ -22,8 +22,12 @@ securityApi.post('/login', async (req, res, next) => {
         expiresIn: '1d',
         algorithm: 'HS256'
       });
-      res.send(`Bearer ${token}`);
-
+      // TODO: Move to a constant
+      res.cookie( 'authorization', `Bearer ${token}`, {
+        httpOnly: true,
+        secure: envConstants.isProduction
+      });
+      res.sendStatus(204);
     }else {
       res.sendStatus(401);
     }
@@ -36,5 +40,6 @@ securityApi.post('/login', async (req, res, next) => {
 
 securityApi.post('/logout', async (req, res, next) => {
 
+  res.clearCookie("authorization");
   res.sendStatus(200);
 });
