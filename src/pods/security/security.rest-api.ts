@@ -15,7 +15,8 @@ securityApi.post('/login', async (req, res, next) => {
 
     if(user) {
       const userSession: UserSession = {
-        id: user._id.toHexString()
+        id: user._id.toHexString(),
+        role: user.role
       }
       const token = jwt.sign(userSession, envConstants.AUTH_SECRET, {
         expiresIn: '1d',
@@ -30,4 +31,10 @@ securityApi.post('/login', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+});
+
+
+securityApi.post('/logout', async (req, res, next) => {
+
+  res.sendStatus(200);
 });

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { bookRepository } from '#dals/index.js';
+import { authorizationMiddleware } from '#pods/security/security.middlewares.js';
 import {
   mapBookListFromModelToApi,
   mapBookFromModelToApi,
@@ -34,7 +35,7 @@ booksApi
       next(error);
     }
   })
-  .post('/', async (req, res, next) => {
+  .post('/', authorizationMiddleware(['admin']), async (req, res, next) => {
     try {
       const book = mapBookFromApiToModel(req.body);
       const newBook = await bookRepository.saveBook(book);
@@ -43,7 +44,7 @@ booksApi
       next(error);
     }
   })
-  .put('/:id', async (req, res, next) => {
+  .put('/:id', authorizationMiddleware(['admin']),  async (req, res, next) => {
     try {
       const { id } = req.params;
       if (await bookRepository.getBook(id)) {
@@ -57,7 +58,7 @@ booksApi
       next(error);
     }
   })
-  .delete('/:id', async (req, res, next) => {
+  .delete('/:id', authorizationMiddleware(['admin']),  async (req, res, next) => {
     try {
       const { id } = req.params;
       const isDeleted = await bookRepository.deleteBook(id);
