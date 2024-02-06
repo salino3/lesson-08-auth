@@ -1,4 +1,4 @@
 
-export interface userSession {
+export interface UserSession {
   id: string;
 };
