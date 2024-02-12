@@ -6,7 +6,7 @@ const randomBytes = promisify(crypto.randomBytes);
 
 const pbkdf2 = promisify(crypto.pbkdf2);
 
-const saltLenght = 16;
+const saltLength = 16;
 
 const passwordLenght = 64;
 
@@ -17,7 +17,7 @@ const digestAlgorithm = 'sha512';
 //
 export const generateSalt = async (): Promise<string> => {
 
-  const salt = await randomBytes(saltLenght);
+  const salt = await randomBytes(saltLength);
   return salt.toString('hex');
 };
 

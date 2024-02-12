@@ -7,6 +7,8 @@ export interface DB {
   books: Book[];
 }
 
+
+
 export const db: DB = {
   users: [
     {
@@ -14,15 +16,15 @@ export const db: DB = {
       email: 'admin@email.com',
       password: 'test',
       salt: '',
-      role: 'admin'
+      role: 'admin',
     },
     {
       _id: new ObjectId(),
       email: 'user@email.com',
       password: 'test',
       salt: '',
-      role: 'standard-user'
-    },
+      role: 'standard-user',
+    }
   ],
 
   books: [
